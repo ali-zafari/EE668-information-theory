@@ -1,0 +1,141 @@
+\documentclass[12pt, letterpaper]{scrartcl}
+
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage[shortlabels]{enumitem} % Use a. in the enumerate
+\usepackage{amsmath} % aligned equations
+\usepackage{graphicx} % include figure
+\usepackage{float} % usage of H for figure float
+\usepackage{amssymb} % \blacksqure and \triangleq
+\usepackage{xcolor} % color in math mode
+
+\begin{document}
+
+% ### Header - start ###
+    \begin{center}
+    	\hrule
+    	\vspace{0.4cm}
+    	{\textbf { {\large Homework 4} \\ EE 668 --- Information Theory}}
+    \end{center}
+    { \textbf{Name:} Ali Zafari \hspace{\fill} \textbf{Student Number:} 800350381 \hspace{\fill} \textbf{Fall 2022} } \newline\hrule
+% ### Header - end ###
+\paragraph*{Aside} \hfill\newline
+Throughout the solutions below, we have made extensive use of entropy decomposition equation as below. Although shown for a three dimensional probability vector ($\alpha, \beta,\gamma$), it is generally applicable to any dimensionality as well.
+\begin{align*}
+    \alpha + \beta + \gamma = 1\longrightarrow
+    H(\alpha, \beta, \gamma)=H(\alpha, 1-\alpha) + (1-\alpha)H(\frac{\beta}{1-\alpha}, \frac{\gamma}{1-\alpha})
+\end{align*}
+\hrule
+\paragraph*{Problem 4.1} \hfill\newline
+\begin{enumerate}[((a))]
+    \item
+    The distribution on the input to the channel can be assumed a general Bernoulli:
+    \begin{align*}
+        p_{X}(x)=p^x(1-p)^{1-x}\qquad x\in\{0,1\}
+    \end{align*}
+    then we should find the capacity as defined:
+    \begin{align*}
+        C=\max_{p_{X}(x)} I(X;Y)
+    \end{align*}
+    the mutual information can be decomposed as:
+    \begin{align*}
+        I(X;Y)=H(Y)-H(Y|X)
+    \end{align*}
+    now both of the terms above can be calculated separately:
+    \begin{align*}
+        H(Y|X)&=\sum_x H(Y|X=x)p_{X}(x)\\
+        &=pH(1-\epsilon-\alpha,\alpha,\epsilon) + (1-p)H(1-\epsilon-\alpha,\alpha,\epsilon)\\
+        &=H(1-\epsilon-\alpha,\alpha,\epsilon)
+    \end{align*}
+    and
+    \begin{align*}
+        H(Y)&=H(p_{Y}(1),p_{Y}(e),p_{Y}(0))\\
+        &=H(p(1-\epsilon-\alpha)+(1-p)\epsilon,\epsilon,(1-p)(1-\epsilon-\alpha)+p\epsilon)\\
+        &=H(\alpha,1-\alpha) + (1-\alpha)H(\frac{p(1-\epsilon-\alpha)+(1-p)\epsilon}{1-\alpha}, \frac{(1-p)(1-\epsilon-\alpha)+p\epsilon}{1-\alpha})
+    \end{align*}
+    maximum entropy for a Bernoulli random variable equals to one, so:
+    \begin{align*}
+        H(Y)\leq H(\alpha,1-\alpha) + (1-\alpha)
+    \end{align*}
+    to have the equality for the above inequality, the second term entropy should be a uniform Bernoulli, then:
+    \begin{align*}
+        \frac{p(1-\epsilon-\alpha)+(1-p)\epsilon}{1-\alpha}=\frac{(1-p)(1-\epsilon-\alpha)+p\epsilon}{1-\alpha} \longrightarrow p=\frac{1}{2}
+    \end{align*}
+    Finally the capacity will be equal to:
+    \begin{align*}
+        C &= [H(\alpha,1-\alpha) + (1-\alpha)] - H(1-\epsilon-\alpha,\alpha,\epsilon)\\
+        &=[H(\alpha,1-\alpha) + (1-\alpha)] -[H(\alpha,1-\alpha)+(1-\alpha)H(\frac{1-\alpha-\epsilon}{1-\alpha},\frac{\epsilon}{1-\alpha})]\\
+        &=(1-\alpha) - (1-\alpha)H(\frac{1-\alpha-\epsilon}{1-\alpha},\frac{\epsilon}{1-\alpha}) 
+    \end{align*}
+    \item
+    For $\alpha=0$; binary symmetric channel:
+    \begin{align*}
+        C=1-H(\epsilon, 1-\epsilon) 
+    \end{align*}
+    \item
+    For $\epsilon=0$; binary erasure channel:
+    \begin{align*}
+        C=1-\alpha
+    \end{align*}
+\end{enumerate}
+\hrule
+
+\paragraph*{Problem 4.2} \hfill\newline
+\begin{enumerate}[((a))]
+    \item
+    Output of the channel is described as:
+    \begin{align*}
+        Y=X+Z\qquad,X\in\{0,1\},Z\in\{0,a\}
+    \end{align*}
+    then we should find the capacity as defined:
+    \begin{align*}
+        C=\max_{p_{X}(x)} I(X;Y)
+    \end{align*}
+    the mutual information can be decomposed as:
+    \begin{align*}
+        I(X;Y)=H(X)-H(X|Y)
+    \end{align*}
+    depending on the value of $a$, 4 scenarios can be imagined:
+    \begin{itemize}
+        \item $a=-1$
+        
+        $Y\in\{-1,0,1\}$, now the channel is like a binary erasure channel with erasure probability of 0.5. Therefore the capacity will be $C=0.5$.
+        \item $a=0$
+        
+        $Y=X$, knowing $Y$ will determine $X$ exactly ($H(X|Y)=0$). Therefore capacity will be $C=\max H(X)=1$.
+        \item $a=1$
+        
+        $Y\in\{0,1,2\}$, now the channel is like a binary erasure channel with erasure probability of 0.5. Therefore the capacity will be $C=0.5$.
+        \item $a=\notin\{-1, 0, 1\}$
+        
+        $Y\in\{0,1,a,a+1\}$, knowing $Y$ will determine $X$ exactly ($H(X|Y)=0$). Therefore capacity will be $C=\max H(X)=1$.
+    \end{itemize}
+\end{enumerate}
+\hrule
+
+\paragraph*{Problem 4.3} \hfill\newline
+Both $X$ and $Z$ are Bernoulli random variables:
+\begin{align*}
+    p_{X}(x)=p^x(1-p)^{1-x}\qquad x\in\{0,1\}\\
+    p_{Z}(z)=\alpha^z(1-\alpha)^{1-z}\qquad z\in\{0,1\}
+\end{align*}
+Then the distribution of the output of the channel will be also a Bernoulli:
+\begin{align*}
+    p_{Y}(y)=(p\alpha)^y(1-p\alpha)^{1-y}\qquad y\in\{0,1\}\\
+\end{align*}
+\begin{align*}
+    C=\max_{p_{X}(x)} I(X;Y)&=\max_{p_{X}(x)}[H(Y)-H(Y|X)]\\
+    &=\max_{p_{X}(x)}[H(p\alpha, 1-p\alpha)-(pH(Y|X=1)+(1-p)H(Y|X=0))]\\
+    &=\max_{p_{X}(x)}[H(p\alpha, 1-p\alpha)-(pH(\alpha,1-\alpha)+(1-p)\times0))]\\
+    &=\max_{p_{X}(x)}[H(p\alpha, 1-p\alpha)-pH(\alpha,1-\alpha))]\\
+    &=\max_{p_{X}(x)}[p\alpha\log p\alpha + (1-p\alpha)\log(1-p\alpha)-p\alpha\log\alpha -p(1-\alpha)\log(1-\alpha)]
+\end{align*}
+by setting the derivative equal to zero w.r.t. to variable p, we fine that $p=\frac{1}{\alpha2^{\frac{H(\alpha, 1-\alpha)}{\alpha}}+\alpha}$.
+finally, the capacity will be:
+\begin{align*}
+    C=\log(2^{\frac{H(\alpha, 1-\alpha)}{\alpha}}+1)-\frac{H(\alpha, 1-\alpha)}{\alpha}
+\end{align*}
+\hrule
+
+\end{document}
+
+
