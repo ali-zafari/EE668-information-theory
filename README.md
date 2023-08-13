@@ -1,6 +1,8 @@
 # EE 668 - Information Theory
 Fall 2022
 
+Syllabus: [link](./syllabus.pdf)
+
 Textbooks:
  - Cover, Thomas, [Elements of Information Theory](https://www.amazon.com/Probability-Random-Variables-Stochastic-Processes/dp/0071226613), 2nd edition
  - Mackay, David, [Information Theory, Inference, and Learning Algorithms](https://www.inference.org.uk/itprnn/book.pdf)
