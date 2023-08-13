@@ -14,10 +14,10 @@ Instructor: [Natalia Schmid](https://directory.statler.wvu.edu/faculty-staff-dir
 
 |  | Problems | Solutions |
 | :---:|:---:|:---:|
-| HW1 | [-]() | [link](./assignments/HW1.pdf) |
+| HW1 | [link](./assignments/HW1_p.pdf) | [link](./assignments/HW1.pdf) |
 | HW2 | [link](./assignments/HW2_p.pdf) | [link](./assignments/HW2.pdf) |
 | HW3 | [link](./assignments/HW3_p.pdf) | [link](./assignments/HW3.pdf) |
-| HW4 | [-]() | [link](./assignments/HW4.pdf) |
+| HW4 | [link](./assignments/HW4_p.pdf) | [link](./assignments/HW4.pdf) |
 | HW5 | [link](./assignments/HW5_p.pdf) | [link](./assignments/HW5.pdf) |
 
 My Notes: [Information Theory Notes](./info_theory_notes_handwritten.pdf) 
